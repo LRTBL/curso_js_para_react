@@ -7,49 +7,6 @@
 </head>
 <body>
     <div id="container"></div>
-    <script>
-        function component(strings, ...dynamicValues){
-            return function(props){
-                let newContent = strings.slice();
-                dynamicValues.forEach((value, index)=>{
-                    newContent[index] += props[value];
-                })
-                return newContent.join('');
-            }
-        }
-
-        const styled = {
-            h1: function(styles){
-                return function(content){
-                    return `
-                        <h1 style="${styles}">
-                            ${content}
-                        </h1>
-                    `
-                }
-            }
-        }
-
-        const TitleStyled = styled.h1`
-            color: orange;
-            font-family: system-ui;
-            font-size: 50px;
-            text-shadow: 2px 2px 0 black;
-        `
-
-        const props = {
-            message: "no te rindas",
-            number: "1"
-        }
-
-        const Title = component`<marquee> ${"message"} </marquee>`(props)
-       
-        function render(component, container){
-            container.innerHTML = component;
-        }
-       
-        render(TitleStyled(Title), window.container);
-    </script>
-    
+    <script type="module" src="./js/app.js"></script>
 </body>
 </html>

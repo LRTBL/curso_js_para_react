@@ -54,58 +54,7 @@
         </div>
     </main>
 
-    <script>
-
-        const createStore = (reducer, initialState) => {
-            let state = initialState
-            let updater = () => { }
-            const getState = () => state
-
-            const dispatch = (action) => {
-                state = reducer(state, action)
-                updater()
-            }
-            const subscribe = (listener) => {
-                updater = listener
-            }
-            return {
-                getState,
-                dispatch,
-                subscribe
-            }
-        }
-
-        const reducer = (state, action) => {
-            switch(action.type){
-                case 'BURN':
-                    return {
-                        ...state,
-                        init: state.init+0.42,
-                        fault: state.fault-0.42
-                    }
-                default:
-                    return state
-            }
-        }
-
-        const store = createStore(reducer, {init:0, fault:1360563})
-        // store.dispatch()
-        // store.getState()
-        // store.subscribe()
-
-        store.subscribe(() => {
-            window.result.textContent = `Haz quedamdo ${store.getState().init} calorias`
-            window.fault.textContent = `Te quedan ${store.getState().fault} calorias`
-        })
-        
-        const burn  = ()=>{
-            store.dispatch({
-                type: "BURN",
-                payload: 1.42
-            });
-        }
-        window.burn.addEventListener('click', burn);
-    </script>
+    <script type="module" src="./js/app.js"></script>
 </body>
 
 </html>
